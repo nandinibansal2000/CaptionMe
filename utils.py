@@ -17,4 +17,18 @@ def train_test_split_(img_to_captions, img_to_image_features, test_size=0.3):
     return train_images, test_images, train_captions, test_captions
 
 
+def get_common_images(img_to_captions, img_to_image_features):
+    img_to_image = {}
+    img_to_cap = {}
+    for img in img_to_image_features:
+        if img in img_to_captions:
+            img_to_image[img] = img_to_image_features[img]
+
+    for img in img_to_captions:
+        if img in img_to_image:
+            img_to_cap[img] = img_to_captions[img]
+
+    return img_to_image, img_to_cap
+
+
 # train_images, test_images, train_captions, test_captions = train_test_split_(img_to_captions, img_to_image_features)
