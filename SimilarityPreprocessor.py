@@ -20,11 +20,11 @@ class SimilarityPreprocessor:
 	def getQuoteMapping(self,df):
 		"""
         Returns the Quote to Quote ID Mapping and Quote ID to Quote Mapping.
-          Parameters:
-                df(pandas.DataFrame) : DataFrame of Quotes, Author and Tags
-          Returns:
-                quote_qid(dict) : Quote to Quote ID Mapping
-                qid_quote(dict) : Quote ID to Quote Mapping
+	      Parameters:
+	            df(pandas.DataFrame) : DataFrame of Quotes, Author and Tags
+	      Returns:
+	            quote_qid(dict) : Quote to Quote ID Mapping
+	            qid_quote(dict) : Quote ID to Quote Mapping
         """
 		qid_quote = dict()
 		quote_qid = dict()
@@ -51,7 +51,7 @@ class SimilarityPreprocessor:
 
 
 
-	def getTagMapping(self,df,quote_qid):
+	def getTagMapping(self,df):
 		"""
         Returns the Tags to Quote ID Mapping.
           Parameters:
@@ -62,7 +62,7 @@ class SimilarityPreprocessor:
         """
 		tags_qid = dict()
 
-		en_words = {}
+		en_words = dict()
 		for i in words.words():
 		  en_words[i] = 1
 
@@ -70,8 +70,8 @@ class SimilarityPreprocessor:
 		ps = PorterStemmer()
 
 		for i in range(len(df)):
-			text, quote = df['Tags'].iloc[i],df['Quote'].iloc[i]
-			id_ = quote_qid[quote]
+			text = df['Tags'].iloc[i]
+			qid_ = i+1
 			text = text.split(",")
 			for i_ in text:
 				i = i_.strip()
@@ -82,7 +82,7 @@ class SimilarityPreprocessor:
 				else:
 					i = ps.stem(i)
 					tags_qid[i] = tags_quotes.get(i,[])
-					tags_qid[i].append(id_)
+					tags_qid[i].append(qid_)
 		return tags_qid
 
 
@@ -106,11 +106,11 @@ class SimilarityPreprocessor:
         Returns the Top k Quotes based on Cosine Similarity Score.
           Parameters:
           		imgtext(str) : Text description of image
-          		qid_vector(dict) : Quote ID to Vector Embeddings Mapping
+          		qids(list) : Qoute IDs to be processed
           		k(int) : The top number of quotes to be returned
-          		qid_quote(dict) : Quote ID to Quote Mapping
+          		qid_vector(dict) : Quote ID to Vector Embeddings Mapping
           Returns:
-                TopKQuotes(list) : Top k Quotes based on Cosine Similarity Score
+                TopKScores(list) : Top k tuples of Score along with Quote ID
         """
 		scores = []
 		query_embedding = self.model.encode(imgtext)
@@ -119,15 +119,26 @@ class SimilarityPreprocessor:
 			quote_embedding = qid_vector[qid]
 			scores.append((self.getSimilarityScore(query_embedding,quote_embedding),qid))
 		scores = sorted(scores, key=lambda x:(-x[0]))
-		return scores[:k]
+		TopKScores = scores[:k]
+		return TopKScores
 
 
 
 	def getTopKQuotes(self,imgtext,tags_qid,k,qid_vector):
+		"""
+        Returns the Top k Quotes based on Cosine Similarity Score.
+          Parameters:
+          		imgtext(str) : Text description of image
+          		tags_qid(dict) : Tags to Quote ID Mapping
+          		k(int) : The top number of quotes to be returned
+          		qid_vector(dict) : Quote ID to Vector Embeddings Mapping
+          Returns:
+                score_qid(list) : Top k tuples of Score along with Quote ID
+        """
 		i_ = imgtext.split(' ')
 		lemmatizer = WordNetLemmatizer()
 		ps = PorterStemmer()
-		lstq = []
+		qids = []
 		for j in i_:
 			j_ = j.strip()
 			j_ = j_.lower()
@@ -135,15 +146,16 @@ class SimilarityPreprocessor:
 			j_ = ps.stem(j_)
 			if (j_ in tags_qid):
 				lst_ =  tags_qid[j_]
-				lstq.extend(lst_)
+				qids.extend(lst_)
 
-		if(len(lstq) !=0):
-			lstq = list(set(lstq))
-			score_qid = self.getSimilarQuotes(imgtext,lstq,k,qid_vector)
+		if(len(qids)!=0):
+			qids = list(set(qids))
+			score_qid = self.getSimilarQuotes(imgtext,qids,k,qid_vector)
 			return score_qid
 		else:
-			lstq = [i+1 for i in range(len(qid_vector))]
-			return self.getSimilarQuotes(imgtext,lstq,k,qid_vector)
+			qids = [i+1 for i in range(len(qid_vector))]
+			score_qid = self.getSimilarQuotes(imgtext,qids,k,qid_vector)
+			return score_qid
     
 
 
