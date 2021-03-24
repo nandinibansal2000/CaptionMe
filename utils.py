@@ -48,7 +48,7 @@ def build_embedding_matrix(vocab_size, embedding_dim, word_to_idx, embdgs_map):
 
 def greedySearch(photo, maxlen, word_to_idx, idx_to_word, model):
     in_text = 'startseq' 
-    print(idx_to_word.keys())   
+    # print(idx_to_word.keys())   
     photo = np.array([photo])
     for i in range(maxlen):
         sequence = [word_to_idx[w] for w in in_text.split() if w in word_to_idx]

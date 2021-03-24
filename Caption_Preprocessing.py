@@ -67,8 +67,8 @@ class CaptionPreprocessing:
         word_embeddings = {}
 
         for linenum, line in enumerate(glove_200d_file):
-            if linenum % 50000 == 0 and linenum > 0:
-                print(linenum, "vocab proccessed")
+            # if linenum % 50000 == 0 and linenum > 0:
+            #     print(linenum, "vocab proccessed")
             embd = line.split()
             word_embeddings[embd[0]] = [float(i) for i in embd[1:]]
 
@@ -97,7 +97,7 @@ class CaptionPreprocessing:
 
     def create_img_to_cap(self, path):
         captions = pd.read_csv(path, sep='|')
-        print(captions.columns)
+        # print(captions.columns)
 
         captions_li = list(zip(captions['image_name'], captions[' comment']))
         img_to_captions = {}
@@ -111,6 +111,7 @@ class CaptionPreprocessing:
                     img_to_captions[cap[0]] = [caption]
             except:
                 print(cap)
+                
 
         return img_to_captions
 
@@ -161,5 +162,5 @@ if __name__ == "__main__":
 
     cappre = CaptionPreprocessing(caption_path, saved_json_path, glove_path)
     cappre.preprocess()
-    print(cappre.word_to_idx)
-    print(cappre.idx_to_word)
+    # print(cappre.word_to_idx)
+    # print(cappre.idx_to_word)

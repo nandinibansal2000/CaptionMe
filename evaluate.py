@@ -29,7 +29,7 @@ def compute_rouge(original, predicted):
         refs += [predicted[j]]*len(original[j])
     rouge = Rouge()
     scores = rouge.get_scores(hyps, refs, avg=True)
-    print(scores)
+    # print(scores)
 
 
 def get_bleu_score(original, predicted):
@@ -64,15 +64,15 @@ def get_bleu_score(original, predicted):
     gleu_2 = corpus_gleu(references, candidates,min_len=1, max_len=2)
     gleu_3 = corpus_gleu(references, candidates,min_len=1, max_len=3)
     # print(ind_1, ind_2, ind_3, ind_4)
-    print('cumulative 1,2,3,4 bleu', ind_1, cum_2, cum_3, cum_4)
+    # print('cumulative 1,2,3,4 bleu', ind_1, cum_2, cum_3, cum_4)
     # print(gleu_1, gleu_2, gleu_3)
 
 
 def get_pred(test_images, maxLen, word_to_idx, idx_to_word, model):
     predicted_y = []
     for i in range(len(test_images)):
-        if i%100 == 0:
-            print(i)
+        # if i%100 == 0:
+        #     print(i)
         test_img = test_images[i][1]
         photo = test_img.reshape(test_img.shape[0], )
         predicted_cap = greedySearch(photo, maxLen, word_to_idx, idx_to_word, model)
@@ -108,12 +108,12 @@ def evaluate():
     embdgs_map = captionPreprocess.word_embd_map
     maxLen = captionPreprocess.maxLen
 
-    print(maxLen)
+    # print(maxLen)
 
     train_images, test_images, train_captions, test_captions = train_test_split_(img_to_caption, img_to_image_features, test_size=0.3)
 
     model = keras.models.load_model(model_path)
-    print('Model loaded successfully...')
+    # print('Model loaded successfully...')
     test_y = modify_test_cap(test_captions)
     predicted_y = get_pred(test_images, maxLen, word_to_idx, idx_to_word, model)
 
