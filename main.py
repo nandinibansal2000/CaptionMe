@@ -4,12 +4,15 @@ import pickle
 import keras
 import numpy as np
 from SimilarityPreprocessor import SimilarityPreprocessor
+import sys
 
 # Extracting textual information from the image
 preprocessing = PreProcessing()
 
 # Encoded image
-encode_img = preprocessing.getEncode("sample.jpg")
+image_name = sys.argv[1]
+print(image_name)
+encode_img = preprocessing.getEncode(image_name)
 test_images = [('image', encode_img)]
 
 # Directory Path
