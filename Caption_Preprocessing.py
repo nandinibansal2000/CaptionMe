@@ -3,13 +3,15 @@ import pandas as pd
 import numpy as np
 import json
 from tqdm import tqdm
+import string
 
 
 class CaptionPreprocessing:
-    def __init__(self, caption_path, saved_json_path, glove_path=""):
+    def __init__(self, caption_path, saved_json_path, datasetSize='30k', glove_path=""):
         self.saved_json_path = saved_json_path
         self.caption_path = caption_path
         self.glove_path = glove_path
+        self.datasetSize = datasetSize
         self.image_to_caption = None
         self.maxLen = None
         self.vocab = None
@@ -21,7 +23,11 @@ class CaptionPreprocessing:
             path for path in os.listdir(self.saved_json_path) if path.endswith(".json")
         ]
 
-        self.image_to_caption = self.create_img_to_captions(self.caption_path)
+        if self.datasetSize == '8k':
+            self.image_to_caption = self.create_img_to_captions(self.caption_path)
+        else:
+            self.image_to_caption = self.create_img_to_cap(self.caption_path)
+
         self.maxLen = self.get_maxlen_caption(self.image_to_caption)
         self.vocab = self.create_vocab(self.image_to_caption)
 
@@ -38,23 +44,23 @@ class CaptionPreprocessing:
         else:
             self.word_to_idx, self.idx_to_word = self.create_word_to_idx(self.vocab)
 
-        if "word_embeddings_400k_glove_200d.json" in saved_json_files:
-            print("Opening saved word embedding mapping...")
-            self.word_embd_map = json.load(
-                open(
-                    os.path.join(
-                        self.saved_json_path, "word_embeddings_400k_glove_200d.json"
-                    )
-                )
-            )
-        else:
-            print("Creating a word embedding mapping...")
-            self.create_word_embd_map(
-                self.glove_path,
-                os.path.join(
-                    self.saved_json_path, "word_embeddings_400k_glove_200d.json"
-                ),
-            )
+        # if "word_embeddings_400k_glove_200d.json" in saved_json_files:
+        #     print("Opening saved word embedding mapping...")
+        #     self.word_embd_map = json.load(
+        #         open(
+        #             os.path.join(
+        #                 self.saved_json_path, "word_embeddings_400k_glove_200d.json"
+        #             )
+        #         )
+        #     )
+        # else:
+        #     print("Creating a word embedding mapping...")
+        #     self.create_word_embd_map(
+        #         self.glove_path,
+        #         os.path.join(
+        #             self.saved_json_path, "word_embeddings_400k_glove_200d.json"
+        #         ),
+        #     )
 
     def create_word_embd_map(self, glove_path, map_path):
         glove_200d_file = open(glove_path, encoding="utf-8")
@@ -88,6 +94,25 @@ class CaptionPreprocessing:
             imagename_to_captions[img["filename"]] = captions
 
         return imagename_to_captions
+
+    def create_img_to_cap(self, path):
+        captions = pd.read_csv(path, sep='|')
+        print(captions.columns)
+
+        captions_li = list(zip(captions['image_name'], captions[' comment']))
+        img_to_captions = {}
+        for cap in captions_li:
+            try:
+                caption = [i.lower() for i in cap[1].split() if i not in string.punctuation]
+                caption = 'startseq ' + ' '.join(caption) + ' endseq'
+                if cap[0] in img_to_captions:
+                    img_to_captions[cap[0]].append(caption)
+                else:
+                    img_to_captions[cap[0]] = [caption]
+            except:
+                print(cap)
+
+        return img_to_captions
 
     def create_vocab(self, img_to_captions):
         vocab = set()
