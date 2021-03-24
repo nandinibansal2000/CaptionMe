@@ -68,21 +68,27 @@ def get_bleu_score(original, predicted):
     # print(gleu_1, gleu_2, gleu_3)
 
 
-def get_pred(test_images, test_captions, maxLen, word_to_idx, idx_to_word, model):
-    test_y = []
+def get_pred(test_images, maxLen, word_to_idx, idx_to_word, model):
     predicted_y = []
     for i in range(len(test_images)):
         if i%100 == 0:
             print(i)
         test_img = test_images[i][1]
-        test_cap = test_captions[i][1]
-        test_cap = [i.replace('startseq ', '').replace(' endseq', '') for i in test_cap]
-        test_y.append(test_cap)
         photo = test_img.reshape(test_img.shape[0], )
         predicted_cap = greedySearch(photo, maxLen, word_to_idx, idx_to_word, model)
         predicted_y.append(predicted_cap)
 
-    return test_y, predicted_y
+    return predicted_y
+
+def modify_test_cap(test_captions):
+    test_y = []
+    for i in range(len(test_captions)):
+        test_cap = test_captions[i][1]
+        test_cap = [i.replace('startseq ', '').replace(' endseq', '') for i in test_cap]
+        test_y.append(test_cap)
+
+    return test_y
+
 
 
 def evaluate():
@@ -108,7 +114,8 @@ def evaluate():
 
     model = keras.models.load_model(model_path)
     print('Model loaded successfully...')
-    test_y, predicted_y = get_pred(test_images, test_captions, maxLen, word_to_idx, idx_to_word, model)
+    test_y = modify_test_cap(test_captions)
+    predicted_y = get_pred(test_images, maxLen, word_to_idx, idx_to_word, model)
 
     get_bleu_score(test_y, predicted_y)
     compute_rouge(test_y, predicted_y)
