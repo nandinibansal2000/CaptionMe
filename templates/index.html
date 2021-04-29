@@ -75,7 +75,60 @@
       
       });
   </script>
+  <style>
+    
+      .btn-1 {
+      color: white;
+      background-color: #A79A74;
+      padding:5px;
+      width:125px;
+      border-radius: 5px;
+      font-size: 16px;
+      font-weight: bold;
+      display :inline-block;
+      margin: 4px 2px;
+      cursor: pointer;
+      }
+      .btn-2 {
+      color: white;
+      background-color:  #A79A74;
+      padding:5px;
+      width:125px;
+      border-radius: 5px;
+      font-size: 16px;
+      font-weight: bold;
+      margin: 4px 2px;
+      cursor: pointer;
+      }
 
+      .upload-btn-wrapper {
+      position: relative;
+      overflow: hidden;
+      display: inline-block;
+      }
+
+      .btn {
+      color: white;
+      background-color:  #A79A74;
+      padding:5px;
+      width:125px;
+      border-radius: 5px;
+      font-size: 16px;
+      font-weight: bold;
+      margin: 4px 2px;
+      cursor: pointer;
+      display: inline-block;
+      }
+
+      .upload-btn-wrapper input[type=file] {
+      font-size: 100px;
+      position: absolute;
+      left: 0;
+      top: 0;
+      opacity: 0;
+
+}
+  </style>
 </head>
 
 <body>
@@ -224,48 +277,27 @@
       <!-- <div class="col-lg-4 col-md-4"> -->
         <p>We strive to solve this issue with our software ”CaptionMe”.The aim of this software is to provide the user with a set of  appropriate  captions  within  a  fraction  of  seconds  afterhe/she  uploads  the  picture.   The  user  can  then  choose  a caption from the retrieved set of captions.  Our dataset con-tains  of  lakhs  of  quotes  to  choose  from  thus  avoiding  any issue of repetition of captions for similar picture. Our aim is to enhance the user experience on social media platforms like Facebook and Instagram</p>
       <!-- </div> -->
+
+
     </div>
     <!-- /row -->
 
     <div class="row mt2">
+        <h3 style = 'color: #2f2f2f;
+  font-weight: 500;'>Let's get caption for your photo:</h3>
       <div class="centered">
         
         <div class="services-bordered">
-           <input id = "inpfile" type="file" name="file" class="input" >
-          
+          <div class="upload-btn-wrapper">
+            <button class="btn">Upload a file</button>
+            <input id = "inpfile" type="file" name="file" class="input" >
+          </div>
+           
+          <br>
           <!-- <h4>Upload an Image</h4> -->
 
-          <button class="btn-1" id ="btn-1" 
-          style =  "
-          background-color: #4CAF50; /* Green */
-          border: none;
-          color: white;
-          width:125px;
-          padding:5px;
-          border-radius: 4px;
-          text-align: center;
-          text-decoration: none;
-          display: inline-block;
-          font-size: 16px;
-          margin: 4px 2px;
-          cursor: pointer;
-        ">Submit</button>
-        <button class="btn-2" id ="btn-2"  
-
-        style = '
-          display:none           
-          background-color: #4CAF50; /* Green */
-          border: none;
-          color: white;
-          width:125px;
-          padding:5px;
-          border-radius: 4px;
-          text-align: center;
-          text-decoration: none;
-          /*display: inline-block;*/
-          font-size: 16px;
-          margin: 4px 2px;
-          cursor: pointer;'>Processing</button>
+        <button class="btn-1" id ="btn-1">Submit</button>
+        <button class="btn-2" id ="btn-2" style = 'display:none'>Processing</button>
           <p id = "out1"></p>
           <p id = "out2"></p>
           <p id = "out3"></p>
