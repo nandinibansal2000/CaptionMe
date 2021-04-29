@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>CaptionMe</title>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta content="" name="keywords">
+  <meta content="" name="description">
+
+
+  <!-- Favicons -->
+  <link href="{{url_for('static',filename='assets/img/favicon.png')}}" rel="icon">
+  <link href="{{url_for('static',filename='assets/img/apple-touch-icon.png')}}" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,300,700&subset=latin,cyrillic-ext" rel="stylesheet">
+
+
+  <!-- Bootstrap CSS File -->
+  <link href="{{url_for('static',filename='assets/lib/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
+
+  <!-- Libraries CSS Files -->
+  <link href="{{url_for('static',filename='assets/lib/font-awesome/css/font-awesome.min.css')}}" rel="stylesheet">
+  <link href="{{url_for('static',filename='assets/lib/ionicons/css/ionicons.min.css')}}" rel="stylesheet">
+  <link href="{{url_for('static',filename='assets/lib/photostack/photostack.css')}}" rel="stylesheet">
+  <link href="{{url_for('static',filename='assets/lib/fullpage-menu/fullpage-menu.css')}}" rel="stylesheet">
+  <link href="{{url_for('static',filename='assets/lib/cubeportfolio/cubeportfolio.css')}}" rel="stylesheet">
+  <link href="{{url_for('static',filename='assets/lib/superslides/superslides.css')}}" rel="stylesheet">
+  <link href="{{url_for('static',filename='assets/lib/ihover/ihover.css')}}" rel="stylesheet">
+
+  <!-- Main Stylesheet File -->
+  <link href="{{url_for('static',filename='assets/css/style.css')}}" rel="stylesheet">
+  <!-- =======================================================
+    Template Name: Polaroyd
+    Template URL: https://templatemag.com/polaroyd-bootstrap-agency-template/
+    Author: TemplateMag.com
+    License: https://templatemag.com/license/
+  ======================================================= -->
+</head>
+
+<body>
+
+ <!-- Custom navbar -->
+  <div class="custom-navbar"><a class="fm-button" href="#">Menu</a></div>
+  <div class="sidemenu">
+    <ul class="fm-first-level">
+    
+      <!-- <li><a href="#menu1">Pages Menu</a></li> -->
+   
+    </ul>
+    <nav id="menu1" class="active">
+      <a href="{{url_for('home')}}">
+        <span class="subtitle">Basic Index. Polaroid header, services, portfolio, clients logos.</span>
+        Home
+      </a>
+    
+    
+       <a href="{{ url_for('team') }}">
+        <span class="subtitle">We are an awesome team. Take a look.</span>
+        Meet The Team
+      </a>
+    
+    </nav>
+    
+  </div>
+  <!-- /END CUSTOM NAVBAR -->
+
+  <div class="container">
+    <div class="row mt3 presentation">
+      <div class="centered">
+        <i class="icon ion-ios7-people-outline large-icon"></i>
+        <h1>OUR TEAM</h1>
+        <hr>
+      </div>
+      <div class="col-lg-4 col-md-4">
+        <h3>Cool People</h3>
+      </div>
+
+      <div class="col-lg-4 col-md-4">
+        <p>Dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since, when an unknown ristique senectus et netus.</p>
+      </div>
+
+      <div class="col-lg-4 col-md-4">
+        <p>Mellentesque habitant morbi tristique senectus et netus et malesuada famesac turpis egestas. Ut non enim eleifend felis pretium feugiat. Vivamus quis mi. Dummy text of the printing and typesetting.</p>
+      </div>
+    </div>
+    <!-- /row -->
+
+    <div class="row mt2 aligncenter">
+      <div class="col-lg-3 col-md-3">
+        <!-- normal -->
+        <div class="ih-item circle effect1">
+          <a href="#">
+            <div class="spinner"></div>
+            <div class="img"><img src="{{url_for('static',filename='assets/img/team/1.jpg')}}" alt="img"></div>
+            <h4 class="centered">Rosie Sanders</h4>
+            <div class="info">
+              <div class="info-back">
+                <h3>Rosie</h3>
+                <p>Description goes here</p>
+              </div>
+            </div>
+          </a>
+        </div>
+        <!-- end normal -->
+      </div>
+      <div class="col-lg-3 col-md-3">
+        <!-- normal -->
+        <div class="ih-item circle effect1">
+          <a href="#">
+            <div class="spinner"></div>
+            <div class="img"><img src="{{url_for('static',filename='assets/img/team/2.jpg')}}" alt="img"></div>
+            <h4 class="centered">Mark Twain</h4>
+            <div class="info">
+              <div class="info-back">
+                <h3>Mark</h3>
+                <p>Description goes here</p>
+              </div>
+            </div>
+          </a>
+        </div>
+        <!-- end normal -->
+      </div>
+      <div class="col-lg-3 col-md-3">
+        <!-- normal -->
+        <div class="ih-item circle effect1">
+          <a href="#">
+            <div class="spinner"></div>
+            <div class="img"><img src="{{url_for('static',filename='assets/img/team/3.jpg')}}" alt="img"></div>
+            <h4 class="centered">Phillip Sirer</h4>
+            <div class="info">
+              <div class="info-back">
+                <h3>Phillip</h3>
+                <p>Description goes here</p>
+              </div>
+            </div>
+          </a>
+        </div>
+        <!-- end normal -->
+      </div>
+      <div class="col-lg-3 col-md-3">
+        <!-- normal -->
+        <div class="ih-item circle effect1">
+          <a href="#">
+            <div class="spinner"></div>
+            <div class="img"><img src="{{url_for('static',filename='assets/img/team/4.jpg')}}" alt="img"></div>
+            <h4 class="centered">Deborah Shue</h4>
+            <div class="info">
+              <div class="info-back">
+                <h3>Deborah</h3>
+                <p>Description goes here</p>
+              </div>
+            </div>
+          </a>
+        </div>
+        <!-- end normal -->
+      </div>
+
+    </div>
+  </div>
+
+  <!-- <section id="contact" class="section-bg-color mt2">
+    <div class="container centered ptb">
+      <div class="col-md-2 col-md-offset-1">
+        <i class="icon ion-ios7-location-outline large-icon"></i>
+        <h5>HEAD OFFICE</h5>
+        <p>902 Main Street, MVD, UY.</p>
+      </div>
+      <div class="col-md-2 col-md-offset-2">
+        <i class="icon ion-ios7-telephone-outline large-icon"></i>
+        <h5>CALL US</h5>
+        <p>(598) 123-4567</p>
+      </div>
+      <div class="col-md-2 col-md-offset-2">
+        <i class="icon ion-ios7-paperplane-outline large-icon"></i>
+        <h5>QUERIES</h5>
+        <p>support@mail.com</p>
+      </div>
+    </div>
+  </section> -->
+
+  <section id="end" class="section-footer">
+    <div class="container centered ptb">
+      <div class="col-md-6 col-md-offset-3">
+       
+        <p>Copyright &copy; - <strong>Polaroyd</strong> All rights reserved.</p>
+        <div class="credits">
+          <!--
+            You are NOT allowed to delete the credit link to TemplateMag with free version.
+            You can delete the credit link only if you bought the pro version.
+            Buy the pro version with working PHP/AJAX contact form: https://templatemag.com/polaroyd-bootstrap-agency-template/
+            Licensing information: https://templatemag.com/license/
+          -->
+          Created with Polaroyd template by <a href="https://templatemag.com/">TemplateMag</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- JavaScript Libraries -->
+  <script src="{{url_for('static',filename='assets/lib/jquery/jquery.min.js')}}"></script>
+  <script src="{{url_for('static',filename='assets/lib/modernizr/modernizr.min.js')}}"></script>
+  <script src="{{url_for('static',filename='assets/lib/bootstrap/js/bootstrap.min.js')}}"></script>
+  <script src="{{url_for('static',filename='assets/lib/php-mail-form/validate.js')}}"></script>
+  <script src="{{url_for('static',filename='assets/lib/easing/easing.min.js')}}"></script>
+  <script src="{{url_for('static',filename='assets/lib/cubeportfolio/cubeportfolio.js')}}"></script>
+  <script src="{{url_for('static',filename='assets/lib/classie/classie.js')}}"></script>
+  <script src="{{url_for('static',filename='assets/lib/fullpage-menu/fullpage-menu.js')}}"></script>
+  <script src="{{url_for('static',filename='assets/lib/photostack/photostack.js')}}"></script>
+  <script src="{{url_for('static',filename='assets/lib/superslides/superslides.js')}}"></script>
+
+  <!-- Template Main Javascript File -->
+  <script src="{{url_for('static',filename='assets/js/main.js')}}"></script>
+
+
+
+</body>
+</html>

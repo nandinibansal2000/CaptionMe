@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>CaptionMe</title>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta content="" name="keywords">
+  <meta content="" name="description">
+
+  <!-- Favicons -->
+  <link href="{{url_for('static',filename='assets/img/favicon.png')}}" rel="icon">
+  <link href="{{url_for('static',filename='assets/img/apple-touch-icon.png')}}" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,300,700&subset=latin,cyrillic-ext" rel="stylesheet">
+
+  <!-- Bootstrap CSS File -->
+  <link href="{{url_for('static',filename='assets/lib/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
+
+  <!-- Libraries CSS Files -->
+  <link href="{{url_for('static',filename='assets/lib/font-awesome/css/font-awesome.min.css')}}" rel="stylesheet">
+  <link href="{{url_for('static',filename='assets/lib/ionicons/css/ionicons.min.css')}}" rel="stylesheet">
+  <link href="{{url_for('static',filename='assets/lib/photostack/photostack.css')}}" rel="stylesheet">
+  <link href="{{url_for('static',filename='assets/lib/fullpage-menu/fullpage-menu.css')}}" rel="stylesheet">
+  <link href="{{url_for('static',filename='assets/lib/cubeportfolio/cubeportfolio.css')}}" rel="stylesheet">
+  <link href="{{url_for('static',filename='assets/lib/superslides/superslides.css')}}" rel="stylesheet">
+
+  <!-- Main Stylesheet File -->
+  <link href="{{url_for('static',filename='assets/css/style.css')}}" rel="stylesheet">
+
+  <!-- =======================================================
+    Template Name: Polaroyd
+    Template URL: https://templatemag.com/polaroyd-bootstrap-agency-template/
+    Author: TemplateMag.com
+    License: https://templatemag.com/license/
+  ======================================================= -->
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script type="text/javascript">
+      $(document).on("click", "#btn-1", function() {
+      var file_data = $("#inpfile").prop("files")[0]; 
+      var form_data = new FormData(); // Creating 
+      form_data.append("file", file_data) // Appending
+      if(file_data){
+          var b1 = document.getElementById('btn-1');
+      b1.style.display = 'none';
+      var b2 = document.getElementById('btn-2');
+      b2.style.display = 'inline-block';
+
+      $.ajax({
+          url: "/uploader", // Upload Script
+          cache: false,
+          contentType: false,
+          processData: false,
+          data: form_data, // Setting the data attribute 
+          type: 'post',
+          success: function(data) {
+
+          var b1 = document.getElementById('btn-2');
+          b1.style.display = 'none';
+          var b2 = document.getElementById('btn-1');
+          b2.style.display = 'inline-block';
+          document.getElementById('out1').innerHTML = data.ans[0];
+          document.getElementById('out2').innerHTML = data.ans[1];
+          document.getElementById('out3').innerHTML = data.ans[2];
+
+          console.log(data);
+
+
+          }
+      });
+      }
+      else{
+          return ;
+      }
+      
+      });
+  </script>
+
+</head>
+
+<body>
+
+  <!-- Custom navbar -->
+  <div class="custom-navbar"><a class="fm-button" href="#">Menu</a></div>
+  <div class="sidemenu">
+    <ul class="fm-first-level">
+    
+      <!-- <li><a href="#menu1">Pages Menu</a></li> -->
+   
+    </ul>
+    <nav id="menu1" class="active">
+      <a href="{{url_for('home')}}">
+		    <span class="subtitle">Basic Index. Polaroid header, services, portfolio, clients logos.</span>
+		    Home
+		  </a>
+    
+    
+       <a href="{{ url_for('team') }}">
+        <span class="subtitle">We are an awesome team. Take a look.</span>
+        Meet The Team
+      </a>
+    
+    </nav>
+    
+  </div>
+  <!-- /END CUSTOM NAVBAR -->
+
+  <section id="photostack-1" class="photostack photostack-start">
+    <div>
+      <figure>
+        <a href="#" class="photostack-img"><img src="{{url_for('static',filename='assets/img/1.jpg')}}" alt="img01"/></a>
+        <figcaption>
+          <h2 class="photostack-title">Serenity Beach</h2>
+        </figcaption>
+      </figure>
+      <figure>
+        <a href="#" class="photostack-img"><img src="{{url_for('static',filename='assets/img/2.jpg')}}" alt="img02"/></a>
+        <figcaption>
+          <h2 class="photostack-title">Happy Days</h2>
+        </figcaption>
+      </figure>
+      <figure>
+        <a href="#" class="photostack-img"><img src="{{url_for('static',filename='assets/img/3.jpg')}}" alt="img03"/></a>
+        <figcaption>
+          <h2 class="photostack-title">Beautywood</h2>
+        </figcaption>
+      </figure>
+      <figure>
+        <a href="#" class="photostack-img"><img src="{{url_for('static',filename='assets/img/4.jpg')}}" alt="img04"/></a>
+        <figcaption>
+          <h2 class="photostack-title">Heaven of time</h2>
+        </figcaption>
+      </figure>
+      <figure>
+        <a href="#" class="photostack-img"><img src="{{url_for('static',filename='assets/img/5.jpg')}}" alt="img05"/></a>
+        <figcaption>
+          <h2 class="photostack-title">Speed Racer</h2>
+        </figcaption>
+      </figure>
+      <figure>
+        <a href="#" class="photostack-img"><img src="{{url_for('static',filename='assets/img/6.jpg')}}" alt="img06"/></a>
+        <figcaption>
+          <h2 class="photostack-title">Forever this</h2>
+        </figcaption>
+      </figure>
+      <figure data-dummy>
+        <a href="#" class="photostack-img"><img src="{{url_for('static',filename='assets/img/7.jpg')}}" alt="img07"/></a>
+        <figcaption>
+          <h2 class="photostack-title">Lovely Green</h2>
+        </figcaption>
+      </figure>
+      <figure data-dummy>
+        <a href="#" class="photostack-img"><img src="{{url_for('static',filename='assets/img/8.jpg')}}" alt="img08"/></a>
+        <figcaption>
+          <h2 class="photostack-title">Wonderful</h2>
+        </figcaption>
+      </figure>
+      <figure data-dummy>
+        <a href="#" class="photostack-img"><img src="{{url_for('static',filename='assets/img/9.jpg')}}" alt="img09"/></a>
+        <figcaption>
+          <h2 class="photostack-title">Love Addict</h2>
+        </figcaption>
+      </figure>
+      <figure data-dummy>
+        <a href="#" class="photostack-img"><img src="{{url_for('static',filename='assets/img/10.jpg')}}" alt="img10"/></a>
+        <figcaption>
+          <h2 class="photostack-title">Friendship</h2>
+        </figcaption>
+      </figure>
+      <figure data-dummy>
+        <a href="#" class="photostack-img"><img src="{{url_for('static',filename='assets/img/11.jpg')}}" alt="img11"/></a>
+        <figcaption>
+          <h2 class="photostack-title">White Nights</h2>
+        </figcaption>
+      </figure>
+      <figure data-dummy>
+        <a href="#" class="photostack-img"><img src="{{url_for('static',filename='assets/img/12.jpg')}}" alt="img12"/></a>
+        <figcaption>
+          <h2 class="photostack-title">Serendipity</h2>
+        </figcaption>
+      </figure>
+      <figure data-dummy>
+        <a href="#" class="photostack-img"><img src="{{url_for('static',filename='assets/img/13.jpg')}}" alt="img13"/></a>
+        <figcaption>
+          <h2 class="photostack-title">Pure Soul</h2>
+        </figcaption>
+      </figure>
+      <figure data-dummy>
+        <a href="#" class="photostack-img"><img src="{{url_for('static',filename='assets/img/14.jpg')}}" alt="img14"/></a>
+        <figcaption>
+          <h2 class="photostack-title">Winds of Peace</h2>
+        </figcaption>
+      </figure>
+      <figure data-dummy>
+        <a href="#" class="photostack-img"><img src="{{url_for('static',filename='assets/img/15.jpg')}}" alt="img15"/></a>
+        <figcaption>
+          <h2 class="photostack-title">Shades of blue</h2>
+        </figcaption>
+      </figure>
+      <figure data-dummy>
+        <a href="#" class="photostack-img"><img src="{{url_for('static',filename='assets/img/16.jpg')}}" alt="img16"/></a>
+        <figcaption>
+          <h2 class="photostack-title">Lightness</h2>
+        </figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <div class="container">
+    <div class="row mt presentation">
+      <img class="camera aligncenter" src="{{url_for('static',filename='assets/img/camera.png')}}" alt="">
+      <h1 class="centered">WE ARE CaptionME</h1>
+      <hr>
+
+      <!-- <div class="col-lg-4 col-md-4"> -->
+        <h3>About Our Project</h3>
+      <!-- </div> -->
+
+      <!-- <div class="col-lg-4 col-md-4"> -->
+        <p>People use these social media platforms to stay in touch with their family and friends irrespective of their physical loca-tion.  Sharing pictures is a common way for users to interact and for this, they need a good caption to complement their picture.A  most  common  problem  that  people  face  is  finding  the right caption for their picture.  They end up spending hours in search of a unique and apt caption and yet most of the time, they return empty handed</p>
+      <!-- </div> -->
+      <br>
+
+      <!-- <div class="col-lg-4 col-md-4"> -->
+        <p>We strive to solve this issue with our software ”CaptionMe”.The aim of this software is to provide the user with a set of  appropriate  captions  within  a  fraction  of  seconds  afterhe/she  uploads  the  picture.   The  user  can  then  choose  a caption from the retrieved set of captions.  Our dataset con-tains  of  lakhs  of  quotes  to  choose  from  thus  avoiding  any issue of repetition of captions for similar picture. Our aim is to enhance the user experience on social media platforms like Facebook and Instagram</p>
+      <!-- </div> -->
+    </div>
+    <!-- /row -->
+
+    <div class="row mt2">
+      <div class="centered">
+        
+        <div class="services-bordered">
+           <input id = "inpfile" type="file" name="file" class="input" >
+          
+          <!-- <h4>Upload an Image</h4> -->
+
+          <button class="btn-1" id ="btn-1" 
+          style =  "
+          background-color: #4CAF50; /* Green */
+          border: none;
+          color: white;
+          width:125px;
+          padding:5px;
+          border-radius: 4px;
+          text-align: center;
+          text-decoration: none;
+          display: inline-block;
+          font-size: 16px;
+          margin: 4px 2px;
+          cursor: pointer;
+        ">Submit</button>
+        <button class="btn-2" id ="btn-2"  
+
+        style = '
+          display:none           
+          background-color: #4CAF50; /* Green */
+          border: none;
+          color: white;
+          width:125px;
+          padding:5px;
+          border-radius: 4px;
+          text-align: center;
+          text-decoration: none;
+          /*display: inline-block;*/
+          font-size: 16px;
+          margin: 4px 2px;
+          cursor: pointer;'>Processing</button>
+          <p id = "out1"></p>
+          <p id = "out2"></p>
+          <p id = "out3"></p>
+        </div>
+        
+      </div>
+    </div>
+
+    <div class="row mt">
+      <div id="filters-container" class="cbp-l-filters-alignRight container col-sm-12">
+        <div data-filter="*" class="cbp-filter-item-active cbp-filter-item">
+          Some samples
+          <div class="cbp-filter-counter"></div>
+        </div>
+        
+      </div>
+      <!-- end:Filter -->
+    </div>
+  </div>
+  <div id="grid-container" class="cbp-l-grid-fullScreen">
+    <ul>
+      <li class="cbp-item identity">
+        <a class="cbp-caption cbp-lightbox" data-title="Image" href="{{url_for('static',filename='assets/img/works/1.jpg')}}">
+          <div class="cbp-caption-defaultWrap">
+            <img src="{{url_for('static',filename='assets/img/works/1.jpg')}}" alt="" class="img-responsive">
+          </div>
+          <div class="cbp-caption-activeWrap">
+            <div class="cbp-l-caption-alignCenter">
+              <div class="cbp-l-caption-body">
+                <div class="cbp-l-caption-title">Image LightBox</div>
+                <div class="cbp-l-caption-desc">by John Doe</div>
+              </div>
+            </div>
+          </div>
+        </a>
+      </li>
+      <!-- end:Item -->
+      <li class="cbp-item web-design">
+        <a class="cbp-caption cbp-lightbox" data-title="Image" href="{{url_for('static',filename='assets/img/works/2.jpg')}}">
+          <div class="cbp-caption-defaultWrap">
+            <img src="{{url_for('static',filename='assets/img/works/2.jpg')}}" alt="" class="img-responsive">
+          </div>
+          <div class="cbp-caption-activeWrap">
+            <div class="cbp-l-caption-alignCenter">
+              <div class="cbp-l-caption-body">
+                <div class="cbp-l-caption-title">Image LightBox</div>
+                <div class="cbp-l-caption-desc">by John Doe</div>
+              </div>
+            </div>
+          </div>
+        </a>
+      </li>
+      <!-- end:Item -->
+      <li class="cbp-item graphic identity">
+        <a class="cbp-caption cbp-lightbox" data-title="Image" href="{{url_for('static',filename='assets/img/works/3.jpg')}}">
+          <div class="cbp-caption-defaultWrap">
+            <img src="{{url_for('static',filename='assets/img/works/3.jpg')}}" alt="" class="img-responsive">
+          </div>
+          <div class="cbp-caption-activeWrap">
+            <div class="cbp-l-caption-alignCenter">
+              <div class="cbp-l-caption-body">
+                <div class="cbp-l-caption-title">Image LightBox</div>
+                <div class="cbp-l-caption-desc">by John Doe</div>
+              </div>
+            </div>
+          </div>
+        </a>
+      </li>
+      <!-- end:Item -->
+      <li class="cbp-item graphic">
+        <a class="cbp-caption cbp-lightbox" data-title="Image" href="{{url_for('static',filename='assets/img/works/4.jpg')}}">
+          <div class="cbp-caption-defaultWrap">
+            <img src="{{url_for('static',filename='assets/img/works/4.jpg')}}" alt="" class="img-responsive">
+          </div>
+          <div class="cbp-caption-activeWrap">
+            <div class="cbp-l-caption-alignCenter">
+              <div class="cbp-l-caption-body">
+                <div class="cbp-l-caption-title">Image LightBox</div>
+                <div class="cbp-l-caption-desc">by John Doe</div>
+              </div>
+            </div>
+          </div>
+        </a>
+      </li>
+      <!-- end:Item -->
+      <li class="cbp-item identity">
+        <a class="cbp-caption cbp-lightbox" data-title="Image" href="{{url_for('static',filename='assets/img/works/5.jpg')}}">
+          <div class="cbp-caption-defaultWrap">
+            <img src="{{url_for('static',filename='assets/img/works/5.jpg')}}" alt="" class="img-responsive">
+          </div>
+          <div class="cbp-caption-activeWrap">
+            <div class="cbp-l-caption-alignCenter">
+              <div class="cbp-l-caption-body">
+                <div class="cbp-l-caption-title">Image LightBox</div>
+                <div class="cbp-l-caption-desc">by John Doe</div>
+              </div>
+            </div>
+          </div>
+        </a>
+      </li>
+      <!-- end:Item -->
+    
+     
+    </ul>
+  
+    <!-- .banner-wrap (end) -->
+
+  <!-- end:Clients section -->
+  </div>
+
+
+  <section id="end" class="section-footer">
+    <div class="container centered ptb">
+      <div class="col-md-6 col-md-offset-3">
+       
+        <p>Copyright &copy; - <strong>Polaroyd</strong> All rights reserved.</p>
+        <div class="credits">
+          <!--
+            You are NOT allowed to delete the credit link to TemplateMag with free version.
+            You can delete the credit link only if you bought the pro version.
+            Buy the pro version with working PHP/AJAX contact form: https://templatemag.com/polaroyd-bootstrap-agency-template/
+            Licensing information: https://templatemag.com/license/
+          -->
+          Created with Polaroyd template by <a href="https://templatemag.com/">TemplateMag</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- JavaScript Libraries -->
+  <script src="{{url_for('static',filename='assets/lib/jquery/jquery.min.js')}}"></script>
+  <script src="{{url_for('static',filename='assets/lib/modernizr/modernizr.min.js')}}"></script>
+  <script src="{{url_for('static',filename='assets/lib/bootstrap/js/bootstrap.min.js')}}"></script>
+  <script src="{{url_for('static',filename='assets/lib/php-mail-form/validate.js')}}"></script>
+  <script src="{{url_for('static',filename='assets/lib/easing/easing.min.js')}}"></script>
+  <script src="{{url_for('static',filename='assets/lib/cubeportfolio/cubeportfolio.js')}}"></script>
+  <script src="{{url_for('static',filename='assets/lib/classie/classie.js')}}"></script>
+  <script src="{{url_for('static',filename='assets/lib/fullpage-menu/fullpage-menu.js')}}"></script>
+  <script src="{{url_for('static',filename='assets/lib/photostack/photostack.js')}}"></script>
+  <script src="{{url_for('static',filename='assets/lib/superslides/superslides.js')}}"></script>
+
+  <!-- Template Main Javascript File -->
+  <script src="{{url_for('static',filename='assets/js/main.js')}}"></script>
+
+</body>
+</html>
