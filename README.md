@@ -1,5 +1,8 @@
 # CaptionMe
 
+### Goal
+Everyone wants the best caption to describe their post(i.e.  their images),  many users google for inspiration.  On googling, many times, one fails to find the right caption andalso end up wasting a lot of time. We propose to build an Image captioning system for social media platforms in this project. The system will try to find a suitable quote which aptly describes the image to be posted. Using our system, we aim to lessen the burden on the user’s mind and let our system’s creativity take over. Image  caption  generation  is  a  common  problem. Most of the current work focuses on generating textual descriptionfor a given image.  However, this kind of approach won’t be very useful when it comes to social media since the caption that is descriptive of the given image isn’t normally socialmedia relevant.  Using a quote that in someway is related to the picture is a common social media trend. 
+
 ### To run the model
  - Create a folder called Saved_Json inside Dataset directory.
  - Download the pickle files from [this link](https://drive.google.com/drive/folders/1n6RN4HaWz36ei1Jt311e7eAb0-122lDe?usp=sharing)
