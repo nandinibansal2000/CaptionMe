@@ -2,7 +2,7 @@
 
 ### Image caption generation
  - We propose to build an Image captioning system for social media platforms in this project. The system will try to find a suitable quote which aptly describes the image to be posted. Using our system, we aim to lessen the burden on the user’s mind and let our system’s creativity take over.
- -  Image  caption  generation  is  a  common  problem. Most of the current work focuses on generating textual descriptionfor a given image.  However, this kind of approach won’t be very useful when it comes to social media since the caption that is descriptive of the given image isn’t normally social media relevant. 
+ -  Image  caption  generation  is  a  common  problem. Most of the current work focuses on generating textual description for a given image.  However, this kind of approach won’t be very useful when it comes to social media since the caption that is descriptive of the given image isn’t normally social media relevant. 
  
 ### To run the model
  - Create a folder called Saved_Json inside Dataset directory.
